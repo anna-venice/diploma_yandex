@@ -1,6 +1,5 @@
 import configuration
 import requests
-
 import data
 
 
@@ -15,13 +14,13 @@ def post_new_orders():
 def get_track():
     track_number = post_new_orders().json()["track"]
     return track_number
-print(get_track())
+# print(get_track())
 
 #Получение заказа
 
 def get_receive_orders():
-    return requests.get(configuration.URL_SERVICE + configuration.RECEIVE_ORDERS + get_track(""))
-
-
+    track_id=get_track()
+    str_track_id = str(track_id)
+    return requests.get (configuration.URL_SERVICE + configuration.RECEIVE_ORDERS_TRACK+ str_track_id)
 
 
